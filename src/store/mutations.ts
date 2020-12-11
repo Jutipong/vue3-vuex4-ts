@@ -1,5 +1,5 @@
 import { MutationTree } from "vuex";
-import { StateModel, TodoItemModel } from "./state";
+import { StateType, TodoItemModel } from "./state";
 
 //คือการ  set ค่าหรือ update ค่าที่อยู่ใน Store 
 //หรือมองเป็น setter ก็ได้
@@ -11,13 +11,13 @@ export enum MutationType {
 }
 
 export type Mutations = {
-    [MutationType.CreateItem](stata: StateModel, item: TodoItemModel): void
-    [MutationType.SetItems](state: StateModel, items: TodoItemModel[]): void
-    [MutationType.CompleteItem](state: StateModel, item: Partial<TodoItemModel> & { id: number }): void
-    [MutationType.SetLoading](state: StateModel, vulue: boolean): void
+    [MutationType.CreateItem](stata: StateType, item: TodoItemModel): void
+    [MutationType.SetItems](state: StateType, items: TodoItemModel[]): void
+    [MutationType.CompleteItem](state: StateType, item: Partial<TodoItemModel> & { id: number }): void
+    [MutationType.SetLoading](state: StateType, vulue: boolean): void
 }
 
-export const mutations: MutationTree<StateModel> & Mutations = {
+export const mutations: MutationTree<StateType> & Mutations = {
     [MutationType.CreateItem](state, item) {
         state.items.unshift(item);
     },

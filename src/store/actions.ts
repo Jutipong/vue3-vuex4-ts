@@ -1,13 +1,13 @@
 import { ActionContext, ActionTree } from "vuex";
 import { mutations, Mutations, MutationType } from "./mutations";
-import { StateModel, TodoItemModel } from './state';
+import { StateType, TodoItemModel } from './state';
 
 export enum ActionType {
     GetTodoItem = 'GET_ITEMS',
     CreateItem = 'CREATE_ITEM'
 }
 
-// type ActionAugments = Omit<ActionContext<StateModel, StateModel>, 'commit'> & {
+// type ActionAugments = Omit<ActionContext<StateType, StateType>, 'commit'> & {
 //     commit<K extends keyof Mutations>(
 //         key: K,
 //         payload: Parameters<Mutations[K]>[1]
@@ -19,7 +19,7 @@ type ActionAugments = {
         key: K,
         payload: Parameters<Mutations[K]>[1]
     ): ReturnType<Mutations[K]>;
-} & Omit<ActionContext<StateModel, StateModel>, "commit">;
+} & Omit<ActionContext<StateType, StateType>, "commit">;
 
 export type Actions = {
     [ActionType.GetTodoItem](context: ActionAugments): void;
@@ -29,7 +29,7 @@ export type Actions = {
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-export const actions: ActionTree<StateModel, StateModel>
+export const actions: ActionTree<StateType, StateType>
     & Actions = {
     async [ActionType.GetTodoItem]({ commit }) {
         commit(MutationType.SetLoading, true);

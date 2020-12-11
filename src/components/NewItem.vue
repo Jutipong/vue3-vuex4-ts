@@ -42,8 +42,8 @@ export default defineComponent({
         text: text.value,
         completed: false,
       };
-      //   store.commit(MutationType.CreateItem, item);
       store.dispatch(ActionType.CreateItem, item);
+      text.value = '';
     };
 
     return { createTask, text };

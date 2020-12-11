@@ -6,12 +6,12 @@ import {
   createLogger
 } from "vuex";
 
-import { StateModel, state } from "./state";
+import { StateType, state } from "./state";
 import { Mutations, mutations } from "./mutations";
 import { Actions, actions } from "./actions";
 import { Getters, getters } from "./getters";
 
-export const store = createStore<StateModel>({
+export const store = createStore<StateType>({
   plugins: process.env.NODE_ENV === 'development' ? [createLogger()] : [],
   state,
   mutations,
@@ -23,7 +23,7 @@ export function useStore() {
   return store as Store
 }
 
-export type Store = Omit<VuexStore<StateModel>,
+export type Store = Omit<VuexStore<StateType>,
   'getters' | 'commit' | 'dispatch'>
   & {
     commit<K extends keyof Mutations, P extends Parameters<Mutations[K]>[1]>(

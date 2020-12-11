@@ -4,12 +4,12 @@ export type TodoItemModel = {
     completed: boolean,
 }
 
-export type StateModel = {
+export type StateType = {
     loading: boolean,
     items: TodoItemModel[]
 }
 
-export const state: StateModel = {
+export const state: StateType = {
     loading: false,
     items: []
 }
